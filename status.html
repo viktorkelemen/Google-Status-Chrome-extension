@@ -1,0 +1,72 @@
+<html>
+    <head>
+      <script src="google-identity-api/google-identity-api.js"></script>
+      <script>
+
+      var pollIntervalMin = 1000 * 5;  // 5 seconds
+      var pollIntervalMax = 1000 * 60 * 60;  // 1 hour
+      var requestFailureCount = 0;  // used for exponential backoff
+      var requestTimeout = 1000 * 5;  // 5 seconds
+
+      var username;
+
+      // false = logged off
+      // true = logged in
+      var googleStatus = false;
+
+
+      function showLoggedIn() {
+          chrome.browserAction.setIcon({path:"logged_in.png"});
+      }
+
+      function showLoggedOut() {
+          chrome.browserAction.setIcon({path:"logged_out.png"});
+      }
+
+
+      function startRequest() {
+
+          GOOGLE_IDENTITY_API.getUserName( function (un) {
+
+              username = un;
+              // if the user is logged in
+              if (un !== undefined) {
+                  if (!googleStatus) {
+                      showLoggedIn();
+                      googleStatus = true;
+                  }
+              } else {
+                  if (googleStatus) {
+                      showLoggedOut();
+                      googleStatus = false;
+                  }
+              }
+              scheduleRequest();
+          });
+      }
+
+
+
+      function scheduleRequest() {
+        var randomness = Math.random() * 2;
+        var exponent = Math.pow(2, requestFailureCount);
+        var delay = Math.min(randomness * pollIntervalMin * exponent, pollIntervalMax);
+        delay = Math.round(delay);
+
+        window.setTimeout(startRequest, delay);
+      }
+
+
+      function init() {
+
+          // default is logged off
+          showLoggedOut();
+          startRequest();
+      }
+
+      </script>
+    </head>
+    <body onload="init()">
+
+    </body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "name": "Google Status",
+  "version": "0.1",
+  "description": "Google status",
+  "background_page": "status.html",
+  "icons": {
+      "128": "icon_128.png"
+   },
+  "browser_action": {
+      "default_title": "Google Status"
+  },
+  "permissions": [
+    "http://www.google.com/"
+  ]
+}
