@@ -17,10 +17,15 @@
 
       function showLoggedIn() {
           chrome.browserAction.setIcon({path:"logged_in.png"});
+
+          if (username !== undefined)   {
+              chrome.browserAction.setTitle({ title: username });
+          }
       }
 
       function showLoggedOut() {
           chrome.browserAction.setIcon({path:"logged_out.png"});
+          chrome.browserAction.setTitle({ title: "Google Status"});
       }
 
 
