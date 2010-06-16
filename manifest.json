@@ -12,6 +12,7 @@
       "default_title": "Google Status"
   },
   "permissions": [
-    "http://*/"
+    "http://*/",
+    "https://*/"
   ]
 }
