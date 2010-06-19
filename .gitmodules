@@ -1,3 +1,6 @@
 [submodule "google-identity-api"]
 	path = google-identity-api
 	url = git@github.com:yikulju/google-identity-api.git
+[submodule "Vaike"]
+	path = Vaike
+	url = git@github.com:yikulju/Vaike.git
