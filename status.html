@@ -2,6 +2,7 @@
     <head>
       <script src="vaike/xhr.vaike.js"></script>
       <script src="vaike/google.vaike.js"></script>
+      <script src="vaike/chrome.vaike.js"></script>
       <script>
 
       var pollInterval = 1000 * 5;  // 5 seconds
@@ -18,7 +19,7 @@
        * Logs out the user
        */
       function logout() {
-          chrome.tabs.create({ url: "http://www.google.com/accounts/Logout" });
+          VAIKE.chrome.openTab("http://www.google.com/accounts/Logout");
       }
 
       /**
