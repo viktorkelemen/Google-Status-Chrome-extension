@@ -1,6 +1,6 @@
 {
   "name": "Google Status",
-  "version": "0.33",
+  "version": "0.50",
   "description": "Google status",
   "background_page": "status.html",
   "icons": {
@@ -12,8 +12,10 @@
       "default_title": "Google Status"
   },
   "permissions": [
+    "cookies",
     "http://*/",
     "https://*/",
+    "*://*.google.com",
     "tabs"
   ]
 }
